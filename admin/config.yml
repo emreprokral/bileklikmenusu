@@ -1,0 +1,19 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "products"
+    label: "Ürünler"
+    folder: "_products"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Ürün Adı", name: "title", widget: "string"}
+      - {label: "Kategori", name: "category", widget: "select", options: ["dogal-tas", "okunmus-tasli", "ip-orgulu", "tasarim"]}
+      - {label: "Fiyat", name: "price", widget: "string"}
+      - {label: "Durum", name: "status", widget: "select", options: ["available", "sold-out"], default: "available"}
+      - {label: "Resim", name: "image", widget: "image"} 

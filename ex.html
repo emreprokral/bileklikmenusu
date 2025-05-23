@@ -1,0 +1,405 @@
+            function handleSwipe() {
+                const distance = touchEndX - touchStartX;
+                
+                // If distance is not enough, it's not a swipe
+                if (Math.abs(distance) < swipeThreshold) return;
+                
+                let nextCategoryIndex;
+                
+                // Right swipe (previous category)
+                if (distance > 0) {
+                    nextCategoryIndex = activeCategoryIndex > 0 ? activeCategoryIndex - 1 : categoryIds.length - 1;
+                    switchCategory(categoryIds[nextCategoryIndex], 'left');
+                }
+                // Left swipe (next category)
+                else if (distance < 0) {
+                    nextCategoryIndex = activeCategoryIndex < categoryIds.length - 1 ? activeCategoryIndex + 1 : 0;
+                    switchCategory(categoryIds[nextCategoryIndex], 'right');
+                }
+            } 
+
+            container.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+                
+                // Find current active category index
+                activeCategoryIndex = categoryIds.findIndex(id => 
+                    document.querySelector(`.category-tab[onclick="switchCategory('${id}')"]`).classList.contains('active')
+                );
+                
+                // Show both indicators since navigation is circular
+                leftIndicator.classList.add('visible');
+                rightIndicator.classList.add('visible');
+            }, false); 
+
+            <div id="okunmus-tasli" class="category-section hide">
+                <h2 class="category-title">Diamond Bileklikler</h2>
+                <div class="menu-grid">
+                    <div class="menu-item product" data-product-id="diamond-1">
+                        <div class="menu-item-image">resim1</div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-name">Bileklik 1</div>
+                            <div class="menu-item-price">??₺</div>
+                        </div>
+                    </div>
+                    <div class="menu-item product" data-product-id="diamond-2">
+                        <div class="menu-item-image">resim2</div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-name">Bileklik 2</div>
+                            <div class="menu-item-price">??₺</div>
+                        </div>
+                    </div>
+                    <div class="menu-item product" data-product-id="diamond-3">
+                        <div class="menu-item-image">resim3</div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-name">Bileklik 3</div>
+                            <div class="menu-item-price">??₺</div>
+                        </div>
+                    </div>
+                    <div class="menu-item product" data-product-id="diamond-4">
+                        <div class="menu-item-image">resim4</div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-name">Bileklik 4</div>
+                            <div class="menu-item-price">??₺</div>
+                        </div>
+                    </div>
+                    <div class="menu-item product" data-product-id="diamond-5">
+                        <div class="menu-item-image">resim5</div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-name">Bileklik 5</div>
+                            <div class="menu-item-price">??₺</div>
+                        </div>
+                    </div>
+                    <div class="menu-item product" data-product-id="diamond-6">
+                        <div class="menu-item-image">resim6</div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-name">Bileklik 6</div>
+                            <div class="menu-item-price">??₺</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="ip-orgulu" class="category-section hide">
+                <h2 class="category-title">İp Örgülü Bileklikler</h2>
+                <div class="menu-grid">
+                    <div class="menu-item product" data-product-id="ip-1">
+                        <div class="menu-item-image">resim1</div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-name">Bileklik 1</div>
+                            <div class="menu-item-price">??₺</div>
+                        </div>
+                    </div>
+                    <div class="menu-item product" data-product-id="ip-2">
+                        <div class="menu-item-image">resim2</div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-name">Bileklik 2</div>
+                            <div class="menu-item-price">??₺</div>
+                        </div>
+                    </div>
+                    <div class="menu-item product" data-product-id="ip-3">
+                        <div class="menu-item-image">resim3</div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-name">Bileklik 3</div>
+                            <div class="menu-item-price">??₺</div>
+                        </div>
+                    </div>
+                    <div class="menu-item product" data-product-id="ip-4">
+                        <div class="menu-item-image">resim4</div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-name">Bileklik 4</div>
+                            <div class="menu-item-price">??₺</div>
+                        </div>
+                    </div>
+                    <div class="menu-item product" data-product-id="ip-5">
+                        <div class="menu-item-image">resim5</div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-name">Bileklik 5</div>
+                            <div class="menu-item-price">??₺</div>
+                        </div>
+                    </div>
+                    <div class="menu-item product" data-product-id="ip-6">
+                        <div class="menu-item-image">resim6</div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-name">Bileklik 6</div>
+                            <div class="menu-item-price">??₺</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tasarim" class="category-section hide">
+                <h2 class="category-title">Tasarım Bileklikler</h2>
+                <div class="menu-grid">
+                    <div class="menu-item product" data-product-id="tasarim-1">
+                        <div class="menu-item-image">resim1</div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-name">Bileklik 1</div>
+                            <div class="menu-item-price">??₺</div>
+                        </div>
+                    </div>
+                    <div class="menu-item product" data-product-id="tasarim-2">
+                        <div class="menu-item-image">resim2</div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-name">Bileklik 2</div>
+                            <div class="menu-item-price">??₺</div>
+                        </div>
+                    </div>
+                    <div class="menu-item product" data-product-id="tasarim-3">
+                        <div class="menu-item-image">resim3</div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-name">Bileklik 3</div>
+                            <div class="menu-item-price">??₺</div>
+                        </div>
+                    </div>
+                    <div class="menu-item product" data-product-id="tasarim-4">
+                        <div class="menu-item-image">resim4</div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-name">Bileklik 4</div>
+                            <div class="menu-item-price">??₺</div>
+                        </div>
+                    </div>
+                    <div class="menu-item product" data-product-id="tasarim-5">
+                        <div class="menu-item-image">resim5</div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-name">Bileklik 5</div>
+                            <div class="menu-item-price">??₺</div>
+                        </div>
+                    </div>
+                    <div class="menu-item product" data-product-id="tasarim-6">
+                        <div class="menu-item-image">resim6</div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-name">Bileklik 6</div>
+                            <div class="menu-item-price">??₺</div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="admin-panel">
+                <button class="admin-button" onclick="toggleAdmin()">Yönetici Paneli</button>
+            </div>
+
+            <div class="admin-modal" id="adminModal">
+                <div class="admin-content">
+                    <h2 style="color: #333; margin-bottom: 20px;">Ürün Yönetimi</h2>
+                    <div class="admin-tabs">
+                        <button class="admin-tab active" onclick="showAdminTab('dogal-tas')">Doğal Taş</button>
+                        <button class="admin-tab" onclick="showAdminTab('okunmus-tasli')">Diamond</button>
+                        <button class="admin-tab" onclick="showAdminTab('ip-orgulu')">İp Örgü</button>
+                        <button class="admin-tab" onclick="showAdminTab('tasarim')">Tasarım</button>
+                    </div>
+                    <div id="productList" style="margin-top: 20px;"></div>
+                    <button onclick="closeAdmin()" style="margin-top: 20px; padding: 10px 20px; background: #ff4500; color: white; border: none; border-radius: 5px; cursor: pointer;">Kapat</button>
+                </div>
+            </div>
+
+            <script>
+                // Admin panel functionality
+                let soldOutProducts = JSON.parse(localStorage.getItem('soldOutProducts')) || [];
+                let currentAdminTab = 'dogal-tas';
+
+                function toggleAdmin() {
+                    const modal = document.getElementById('adminModal');
+                    if (modal.style.display === 'none' || !modal.style.display) {
+                        modal.style.display = 'block';
+                        showAdminTab(currentAdminTab);
+                    } else {
+                        modal.style.display = 'none';
+                    }
+                }
+
+                function closeAdmin() {
+                    document.getElementById('adminModal').style.display = 'none';
+                }
+
+                function showAdminTab(categoryId) {
+                    currentAdminTab = categoryId;
+                    
+                    // Update tab styling
+                    document.querySelectorAll('.admin-tab').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    document.querySelector(`.admin-tab[onclick="showAdminTab('${categoryId}')"]`).classList.add('active');
+                    
+                    updateProductList(categoryId);
+                }
+
+                function updateProductList(categoryId) {
+                    const productList = document.getElementById('productList');
+                    productList.innerHTML = '';
+                    
+                    const category = document.getElementById(categoryId);
+                    const products = category.querySelectorAll('.product');
+                    
+                    products.forEach((product, index) => {
+                        const productId = product.getAttribute('data-product-id');
+                        const productName = product.querySelector('.menu-item-name').textContent;
+                        const isSoldOut = soldOutProducts.includes(productId);
+                        
+                        const div = document.createElement('div');
+                        div.style.margin = '10px 0';
+                        div.style.padding = '10px';
+                        div.style.borderRadius = '5px';
+                        div.style.backgroundColor = '#f5f5f5';
+                        div.innerHTML = `
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="color: #333; font-weight: 500;">${productName}</span>
+                                <button onclick="toggleSoldOut('${productId}')" 
+                                        style="padding: 8px 16px; 
+                                               border: none; 
+                                               border-radius: 4px; 
+                                               background: ${isSoldOut ? '#2e8b57' : '#ff4500'}; 
+                                               color: white; 
+                                               cursor: pointer;">
+                                    ${isSoldOut ? 'Satışa Aç' : 'Tükendi İşaretle'}
+                                </button>
+                            </div>
+                        `;
+                        productList.appendChild(div);
+                    });
+                }
+
+                function toggleSoldOut(productId) {
+                    const index = soldOutProducts.indexOf(productId);
+                    if (index === -1) {
+                        soldOutProducts.push(productId);
+                    } else {
+                        soldOutProducts.splice(index, 1);
+                    }
+                    localStorage.setItem('soldOutProducts', JSON.stringify(soldOutProducts));
+                    updateSoldOutDisplay();
+                    updateProductList(currentAdminTab);
+                }
+
+                function updateSoldOutDisplay() {
+                    // Remove existing sold-out labels
+                    document.querySelectorAll('.sold-out').forEach(el => el.remove());
+                    
+                    // Add new sold-out labels
+                    document.querySelectorAll('.product').forEach(product => {
+                        const productId = product.getAttribute('data-product-id');
+                        if (soldOutProducts.includes(productId)) {
+                            const soldOutLabel = document.createElement('div');
+                            soldOutLabel.className = 'sold-out';
+                            soldOutLabel.textContent = 'TÜKENDİ';
+                            product.style.position = 'relative';
+                            product.appendChild(soldOutLabel);
+                        }
+                    });
+                }
+
+                // Initialize sold-out display on page load
+                document.addEventListener('DOMContentLoaded', () => {
+                    updateSoldOutDisplay();
+                });
+            </script>
+
+            /* Admin panel styles */
+            .admin-panel {
+                position: fixed;
+                bottom: 80px; /* Bottom nav üzerinde olacak şekilde ayarlandı */
+                right: 20px;
+                z-index: 1000;
+            }
+            
+            .admin-button {
+                background: #2e8b57;
+                color: white;
+                border: none;
+                padding: 12px 24px;
+                border-radius: 25px;
+                cursor: pointer;
+                font-size: 14px;
+                box-shadow: 0 4px 12px rgba(46, 139, 87, 0.2);
+                transition: all 0.3s ease;
+            }
+
+            .admin-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 16px rgba(46, 139, 87, 0.3);
+            }
+
+            .admin-modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                z-index: 1001;
+            }
+
+            .admin-content {
+                background: white;
+                padding: 25px;
+                border-radius: 15px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                max-width: 90%;
+                max-height: 90%;
+                overflow-y: auto;
+                width: 100%;
+                max-width: 500px;
+            }
+
+            .admin-tabs {
+                display: flex;
+                gap: 10px;
+                overflow-x: auto;
+                padding-bottom: 10px;
+                margin: 0 -10px;
+                padding: 0 10px;
+            }
+
+            .admin-tab {
+                padding: 8px 16px;
+                border: none;
+                background: #f0f0f0;
+                border-radius: 20px;
+                cursor: pointer;
+                white-space: nowrap;
+                transition: all 0.3s ease;
+                color: #666;
+            }
+
+            .admin-tab.active {
+                background: #2e8b57;
+                color: white;
+            }
+
+            .sold-out {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(255,0,0,0.8);
+                color: white;
+                padding: 8px 16px;
+                border-radius: 5px;
+                font-weight: bold;
+                z-index: 2;
+                font-size: 16px;
+                letter-spacing: 1px;
+            }
+
+            @media screen and (min-width: 768px) {
+                .admin-panel {
+                    bottom: 30px;
+                    right: 30px;
+                }
+
+                .admin-button {
+                    padding: 15px 30px;
+                    font-size: 16px;
+                }
+
+                .admin-content {
+                    padding: 30px;
+                    max-width: 600px;
+                }
+            }
+        </body>
+    </html> 
